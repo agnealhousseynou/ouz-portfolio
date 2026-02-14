@@ -18,6 +18,17 @@ header {
     margin-top: 10px;
 }
 
+.profile-img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+
 .hero-text {
     max-width: 600px;
     margin: 20px auto;
