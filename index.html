@@ -1,123 +1,598 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Alhousseynou Agne | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alhousseynou Agne · Ingénieur Télécoms & Réseaux</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts : Inter + esprit technique -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+  <style>
+    /* === style.css intégré === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #f5f9ff;
+      color: #1e293b;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    .navbar {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 30, 60, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 1rem 0;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, #0f2b4b, #2563eb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1e293b;
+      transition: color 0.2s;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    /* ===== sections générales ===== */
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70%;
+      height: 4px;
+      background: linear-gradient(90deg, #2563eb, #7b9fe0);
+      border-radius: 4px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 2rem 0 1.5rem 0;
+    }
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-content {
+      flex: 1 1 400px;
+    }
+    .hero-name {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      background: linear-gradient(145deg, #0b1f3b, #1e4a8b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .hero-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #2c3e50;
+      margin-bottom: 1.25rem;
+      border-left: 5px solid #2563eb;
+      padding-left: 1rem;
+    }
+    .hero-tagline {
+      font-size: 1.2rem;
+      color: #334155;
+      background: #eef2ff;
+      padding: 1.2rem 1.8rem;
+      border-radius: 40px 40px 40px 8px;
+      font-weight: 400;
+      box-shadow: 0 6px 14px rgba(0,60,130,0.08);
+    }
+
+    .hero-contact-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+    .chip {
+      background: white;
+      padding: 0.6rem 1.5rem;
+      border-radius: 60px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.02);
+      border: 1px solid #e9eef3;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .chip i {
+      color: #2563eb;
+      font-size: 1.2rem;
+    }
+    .chip a {
+      text-decoration: none;
+      color: #1e293b;
+    }
+    .chip:hover {
+      border-color: #2563eb;
+      transform: translateY(-2px);
+    }
+
+    /* ===== À PROPOS ===== */
+    .about-card {
+      background: white;
+      border-radius: 32px;
+      padding: 2.5rem;
+      box-shadow: 0 25px 40px -20px rgba(0,45,85,0.2);
+      border: 1px solid rgba(37,99,235,0.1);
+    }
+    .about-text {
+      font-size: 1.1rem;
+      color: #2d3c4f;
+      max-width: 900px;
+    }
+    .about-text p {
+      margin-bottom: 1.5rem;
+    }
+    .highlight {
+      font-weight: 600;
+      color: #0f2b4b;
+    }
+
+    /* ===== COMPÉTENCES ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .skill-category {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 20px 30px -12px rgba(0,35,70,0.12);
+      transition: 0.2s;
+      border: 1px solid #eef4fa;
+    }
+    .skill-category:hover {
+      border-color: #b3d0ff;
+    }
+    .category-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .category-title i {
+      background: #2563eb10;
+      padding: 10px;
+      border-radius: 18px;
+      color: #2563eb;
+    }
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.2rem;
+    }
+    .skill-badge {
+      background: #f0f4fe;
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1e3a8a;
+      border: 1px solid transparent;
+    }
+    .skill-badge.big {
+      background: #e6edfb;
+      font-weight: 600;
+    }
+
+    /* ===== EXPÉRIENCE & PROJETS ===== */
+    .exp-item, .proj-item {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 12px 26px -12px rgba(0,32,64,0.12);
+      margin-bottom: 1.8rem;
+      border: 1px solid #eef4fa;
+    }
+    .exp-title, .proj-title {
+      font-size: 1.5rem;
+      font-weight: 650;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .exp-date {
+      font-size: 0.95rem;
+      background: #dbeafe;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      color: #1e4a8b;
+      font-weight: 500;
+    }
+    .exp-desc {
+      margin-top: 1rem;
+      list-style: none;
+    }
+    .exp-desc li {
+      margin-bottom: 0.6rem;
+      display: flex;
+      gap: 0.8rem;
+      align-items: baseline;
+    }
+    .exp-desc i {
+      color: #2563eb;
+      width: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+
+    .proj-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.2rem 0 0.8rem;
+    }
+    .proj-tech span {
+      background: #eaf0fd;
+      border-radius: 40px;
+      padding: 0.2rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: white;
+      border-radius: 40px;
+      padding: 2.5rem;
+      border: 1px solid #dfe9f5;
+      justify-content: space-between;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.1rem;
+    }
+    .contact-row i {
+      width: 2.4rem;
+      height: 2.4rem;
+      background: #e5efff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e4a8b;
+      font-size: 1.2rem;
+    }
+    .contact-row a {
+      text-decoration: none;
+      color: #1e293b;
+      border-bottom: 1px dotted transparent;
+    }
+    .contact-row a:hover {
+      border-bottom-color: #2563eb;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0f212f;
+      color: #b0c8da;
+      padding: 2rem 0;
+      text-align: center;
+      border-radius: 40px 40px 0 0;
+      margin-top: 2rem;
+    }
+
+    /* ===== responsive ===== */
+    @media (max-width: 700px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .nav-links {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero-name {
+        font-size: 2.2rem;
+      }
+      .section-title::after {
+        width: 40%;
+      }
+      .hero-contact-cards {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .chip {
+        width: fit-content;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-tagline {
+        font-size: 1rem;
+        padding: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<header>
-    <img src="images/profile.jpg" alt="Photo de Alhousseynou Agne" class="profile-img">
-
-    <h1>Alhousseynou Agne</h1>
-
-    <p class="subtitle">
-        Étudiant Ingénieur en Informatique & Télécommunications et Réseaux |
-        Technicien Support IT
-    </p>
-
-    <p class="hero-text">
-        Je construis des solutions réseaux et systèmes robustes, avec une approche
-        orientée performance, fiabilité et résolution de problèmes.
-    </p>
-</header>
-
-
-<section>
-    <h2>👤 À Propos</h2>
-    <p>
-        Je suis étudiant en DIC 1 (Cycle Ingénieur) en Télécommunications et Réseaux
-        à l’École Supérieure Polytechnique.
-    </p>
-    <p>
-        Titulaire d’un Diplôme de Technicien Supérieur en Télécommunications et Réseaux,
-        j’exerce actuellement comme Technicien Support en Télécom, Réseaux et Informatique.
-    </p>
-    <p>
-        Je combine formation académique et expérience terrain, ce qui me permet
-        de comprendre les systèmes aussi bien en théorie qu’en pratique.
-    </p>
-</section>
-
-<section>
-    <h2>🛠️ Compétences</h2>
-
-    <h3>🔌 Réseaux</h3>
-    <ul>
-        <li>TCP/IP</li>
-        <li>Modèle OSI</li>
-        <li>Routage & Switching</li>
-        <li>Diagnostic réseau</li>
-    </ul>
-
-    <h3>💻 Développement</h3>
-    <ul>
-        <li>React.js</li>
-        <li>PHP (API REST + JWT)</li>
-        <li>MySQL</li>
-        <li>FastAPI</li>
-        <li>MongoDB</li>
-    </ul>
-
-    <h3>🖥️ Systèmes</h3>
-    <ul>
-        <li>Linux</li>
-        <li>Windows</li>
-        <li>Support utilisateur</li>
-        <li>Maintenance informatique</li>
-    </ul>
-</section>
-
-<section>
-    <h2>💼 Expérience Professionnelle</h2>
-    <p><strong>Technicien Support Télécom & IT</strong></p>
-    <ul>
-        <li>Assistance et support utilisateurs</li>
-        <li>Diagnostic et résolution d’incidents</li>
-        <li>Configuration et maintenance réseaux</li>
-        <li>Maintenance équipements informatiques</li>
-        <li>Optimisation des performances systèmes</li>
-    </ul>
-</section>
-
-<section>
-    <h2>🚀 Projets</h2>
-
-    <div class="project">
-        <h3>📚 Application de Gestion de Bibliothèque</h3>
-        <p>Application web permettant la gestion des livres, utilisateurs et emprunts.</p>
-        <p><strong>Technologies :</strong> React, PHP, MySQL</p>
+  <header class="navbar">
+    <div class="container nav-container">
+      <span class="logo">⌘ Alhousseynou Agne</span>
+      <ul class="nav-links">
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#skills">Compétences</a></li>
+        <li><a href="#experience">Expérience</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
+  </header>
 
-    <div class="project">
-        <h3>🌫️ AirQualiSchool</h3>
-        <p>
-            Système intelligent de surveillance de la qualité de l’air dans les écoles.
-            Objectif : Améliorer la santé des élèves grâce à la collecte et l’analyse
-            des données environnementales.
+  <main>
+    <!-- HERO SECTION (intégration du nom, titre, phrase forte + coordonnées rapides) -->
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-name">Alhousseynou Agne</h1>
+          <div class="hero-title">Étudiant Ingénieur Télécoms & Réseaux · Technicien Support IT</div>
+          <div class="hero-tagline">
+            <i class="fas fa-bolt" style="margin-right: 10px; color: #2563eb;"></i>
+            Je construis des solutions réseaux et systèmes robustes, avec une approche orientée performance, fiabilité et résolution de problèmes.
+          </div>
+          <div class="hero-contact-cards">
+            <span class="chip"><i class="fas fa-phone-alt"></i> +221 77 845 40 68</span>
+            <span class="chip"><i class="fas fa-phone-alt"></i> +221 77 012 14 35</span>
+            <span class="chip"><i class="fas fa-envelope"></i> agnealhousseynou@gmail.com</span>
+            <span class="chip"><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/alhousseynou-agne-a2a44b279/" target="_blank">LinkedIn</a></span>
+            <span class="chip"><i class="fab fa-github"></i> <a href="https://agnealhousseynou.github.io/Second-portfolio/" target="_blank">GitHub</a></span>
+          </div>
+        </div>
+        <!-- petite touche visuelle (optionnel) mais on garde la simplicité -->
+      </div>
+    </section>
+
+    <!-- À PROPOS DE MOI -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">👤 À propos de moi</h2>
+        <div class="about-card">
+          <div class="about-text">
+            <p><span class="highlight">DIC 1 (Cycle Ingénieur)</span> en Télécommunications et Réseaux à l'École Supérieure Polytechnique. Titulaire d'un Diplôme de Technicien Supérieur en Télécoms et Réseaux, j'exerce comme <strong>Technicien Support Télécom, Réseaux & Informatique</strong>.</p>
+            <p>Je combine formation académique et expérience terrain pour comprendre les systèmes en théorie comme en pratique. Passionné par les infrastructures réseaux, la résolution d'incidents et le développement d'applications, j'évolue vers un profil d'ingénieur complet.</p>
+            <p><i class="fas fa-map-pin" style="color: #2563eb;"></i> Dakar, Sénégal · Langues : français (courant), anglais (technique), wolof, pular.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPÉTENCES (regroupées depuis les deux fichiers) -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">🛠️ Compétences</h2>
+        <div class="skills-grid">
+          <!-- Réseaux & Télécoms (enrichi avec CCNA / HCIA / protocoles) -->
+          <div class="skill-category">
+            <div class="category-title"><i class="fas fa-network-wired"></i> Réseaux & Télécoms</div>
+            <div class="skill-items">
+              <span class="skill-badge big">TCP/IP · OSI</span>
+              <span class="skill-badge">Routage / Switching</span>
+              <span class="skill-badge">VLAN · OSPF · RIP</span>
+              <span class="skill-badge">BGP · EIGRP · NAT</span>
+              <span class="skill-badge">DHCP · DNS · FTP</span>
+              <span class="skill-badge">SSH · SMTP · HTTPS</span>
+              <span class="skill-badge">ToIP / PABX</span>
+              <span class="skill-badge">Fibre optique (soudure, calcul)</span>
+              <span class="skill-badge">GNS3 · Packet Tracer</span>
+              <span class="skill-badge">CCNA · HCIA Datacom</span>
+            </div>
+          </div>
+          <!-- Développement & Base de données -->
+          <div class="skill-category">
+            <div class="category-title"><i class="fas fa-code"></i> Développement</div>
+            <div class="skill-items">
+              <span class="skill-badge">React.js</span>
+              <span class="skill-badge">PHP (API REST · JWT)</span>
+              <span class="skill-badge">FastAPI · Python</span>
+              <span class="skill-badge">C · Java · HTML/CSS</span>
+              <span class="skill-badge">MySQL · PostgreSQL</span>
+              <span class="skill-badge">MongoDB</span>
+              <span class="skill-badge">Arduino IDE · Matlab</span>
+              <span class="skill-badge">Client-serveur</span>
+            </div>
+          </div>
+          <!-- Systèmes, IT & Outils -->
+          <div class="skill-category">
+            <div class="category-title"><i class="fas fa-laptop"></i> Systèmes & IT</div>
+            <div class="skill-items">
+              <span class="skill-badge">Linux (services, SSH)</span>
+              <span class="skill-badge">Windows</span>
+              <span class="skill-badge">Support utilisateur</span>
+              <span class="skill-badge">Maintenance / diagnostic</span>
+              <span class="skill-badge">VirtualBox</span>
+              <span class="skill-badge">VS Code · Eclipse</span>
+              <span class="skill-badge">Optisystem</span>
+              <span class="skill-badge">Canva / PixelLab</span>
+            </div>
+          </div>
+        </div>
+        <!-- mini mention certifs -->
+        <p style="margin-top: 1.8rem; background: #e8f0fe; padding: 0.8rem 1.8rem; border-radius: 40px; display: inline-block;">
+          <i class="fas fa-certificate" style="color:#2563eb;"></i> Certifications : CCNA · HCIA Datacom · C2i · Marketing digital
         </p>
+      </div>
+    </section>
+
+    <!-- EXPÉRIENCE PROFESSIONNELLE (fusionnée avec les rôles du CV) -->
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">💼 Expérience professionnelle</h2>
+
+        <div class="exp-item">
+          <div class="exp-title">
+            Technicien Support Télécom & IT <span class="exp-date">(actuel)</span>
+          </div>
+          <ul class="exp-desc">
+            <li><i class="fas fa-circle-check"></i> Assistance et support utilisateurs (matériel, logiciel, réseaux)</li>
+            <li><i class="fas fa-circle-check"></i> Diagnostic et résolution d'incidents techniques</li>
+            <li><i class="fas fa-circle-check"></i> Configuration et maintenance réseaux (équipements, VLAN, services)</li>
+            <li><i class="fas fa-circle-check"></i> Optimisation des performances systèmes et maintenance IT</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-title">
+            Responsable coordination événementielle <span class="exp-date">oct. 2024 – présent</span>
+          </div>
+          <ul class="exp-desc">
+            <li><i class="fas fa-circle-check"></i> Orchestration d'événements au département Informatique (ESP)</li>
+            <li><i class="fas fa-circle-check"></i> Synchronisation des équipes, soutien logistique, communication interne</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-title">
+            Développeur d'applications <span class="exp-date">janv. 2025 – mars 2025</span>
+          </div>
+          <ul class="exp-desc">
+            <li><i class="fas fa-circle-check"></i> Conception collaborative d'une application de gestion de bibliothèque</li>
+            <li><i class="fas fa-circle-check"></i> Spécifications techniques, implémentation, tests et documentation</li>
+            <li><i class="fas fa-circle-check"></i> Démonstration devant un jury (React, PHP, MySQL)</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-title">
+            Graphiste freelance · Création visuelle <span class="exp-date">janv. 2024 – présent</span>
+          </div>
+          <ul class="exp-desc">
+            <li><i class="fas fa-circle-check"></i> Visuels pour événements & célébrations (Canva, PixelLab)</li>
+            <li><i class="fas fa-circle-check"></i> Maquettes personnalisées selon besoins clients</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETS (avec les 3 projets phares + mentions) -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">🚀 Projets</h2>
+
+        <div class="proj-item">
+          <div class="proj-title">📚 Application de Gestion de Bibliothèque</div>
+          <p>Application web complète : gestion des livres, utilisateurs, emprunts. Développée en équipe avec spécifications, tests et démo jury.</p>
+          <div class="proj-tech"><span>React</span><span>PHP</span><span>MySQL</span><span>JWT</span></div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-title">🌫️ AirQualiSchool</div>
+          <p>Système intelligent de surveillance de la qualité de l'air dans les écoles. Collecte et analyse de données pour améliorer la santé des élèves.</p>
+          <div class="proj-tech"><span>IoT</span><span>FastAPI</span><span>MongoDB</span><span>Arduino</span></div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-title">📅 Gestion des Emplois du Temps / Cahier de textes</div>
+          <p>Plateforme web pour planifier les emplois du temps et gérer un cahier de textes virtuel.</p>
+          <div class="proj-tech"><span>React</span><span>PHP</span><span>MySQL</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT (détails + numéros, email, linkedin, github) -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">📩 Contact</h2>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-row"><i class="fas fa-envelope"></i> <a href="mailto:agnealhousseynou@gmail.com">agnealhousseynou@gmail.com</a></div>
+            <div class="contact-row"><i class="fas fa-phone"></i> +221 77 845 40 68  /  +221 77 012 14 35</div>
+            <div class="contact-row"><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/alhousseynou-agne-a2a44b279/" target="_blank">linkedin.com/in/alhousseynou-agne</a></div>
+            <div class="contact-row"><i class="fab fa-github"></i> <a href="https://agnealhousseynou.github.io/Second-portfolio/" target="_blank">agnealhousseynou.github.io</a></div>
+          </div>
+          <div style="font-style: italic; color: #3b5f8a;">Disponible pour échanges, collaborations ou opportunités.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Alhousseynou Agne — Étudiant ingénieur Télécoms & Réseaux · portfolio optimisé</p>
+      <p style="margin-top: 0.8rem; font-size: 0.9rem;">Certifié CCNA · HCIA Datacom · C2i</p>
     </div>
-
-    <div class="project">
-        <h3>📅 Application de Gestion des Emplois du Temps</h3>
-        <p>
-            Plateforme web permettant la gestion des emplois du temps et du cahier
-            de textes virtuel.
-        </p>
-    </div>
-</section>
-
-<section>
-    <h2>📩 Contact</h2>
-    <p>Email : <a href="mailto:agnealhousseynou@gmail.com">agnealhousseynou@gmail.com</a></p>
-    <p>LinkedIn : <a href="https://www.linkedin.com/in/alhousseynou-agne-a2a44b279/" target="_blank">Mon LinkedIn</a></p>
-    <p>GitHub : <a href="https://github.com/agnealhousseynou" target="_blank">Mon GitHub</a></p>
-</section>
-
-<footer>
-    <p>© 2026 Alhousseynou Agne - Tous droits réservés</p>
-</footer>
-
+  </footer>
 </body>
 </html>
