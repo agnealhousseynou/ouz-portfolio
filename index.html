@@ -374,7 +374,7 @@
           </div>
           <div class="contact-form-card slide-in delay-1">
             <h3>Envoyer un message</h3>
-            <form id="contactForm">
+            <form name="submit-to-google-sheet">
               <div class="form-group">
                 <input type="text" placeholder="Votre nom" required>
               </div>
@@ -416,5 +416,16 @@
       document.querySelector('.nav-links').classList.toggle('show');
     });
   </script>
+  <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyLkVE95qlF_WDhA2O4pnXuq_hFeZPAZK50yoEYH1BwjMS7s3JoH3TRUu0B4rWriO3d/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
 </body>
 </html>
