@@ -13,6 +13,7 @@
   <!-- Link to external CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <body>
   <!-- Particules de fond (effet visuel) -->
   <div class="bg-particles">
@@ -374,7 +375,7 @@
           </div>
           <div class="contact-form-card slide-in delay-1">
             <h3>Envoyer un message</h3>
-            <form name="submit-to-google-sheet">
+            <form id="contact-form">
               <div class="form-group">
                 <input type="text" placeholder="Votre nom" required>
               </div>
@@ -417,15 +418,21 @@
     });
   </script>
   <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyLkVE95qlF_WDhA2O4pnXuq_hFeZPAZK50yoEYH1BwjMS7s3JoH3TRUu0B4rWriO3d/exec'
-  const form = document.forms['submit-to-google-sheet']
+(function() {
+    emailjs.init("3ypqn4W7fe_tNN-LR"); // remplace ici
+})();
 
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => console.log('Success!', response))
-      .catch(error => console.error('Error!', error.message))
-  })
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm("service_4epzkes", "template_x0bogrl", this)
+    .then(function() {
+        document.getElementById("status").innerHTML = "Message envoyé avec succès ✅";
+    }, function(error) {
+        document.getElementById("status").innerHTML = "Erreur ❌";
+        console.log(error);
+    });
+});
 </script>
 </body>
 </html>
