@@ -428,5 +428,147 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
     });
 });
 </script>
+    <script>
+    // Menu mobile
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('show');
+    });
+
+    // Initialisation EmailJS
+    (function() {
+        emailjs.init("3ypqn4W7fe_tNN-LR");
+    })();
+
+    // Gestion du formulaire avec animations
+    const form = document.getElementById("contact-form");
+    const statusDiv = document.getElementById("status");
+    const submitBtn = document.getElementById("submit-btn");
+    const originalBtnText = submitBtn.innerHTML;
+
+    // Fonction pour afficher le statut avec animation
+    function showStatus(message, type) {
+        statusDiv.innerHTML = message;
+        statusDiv.className = '';
+        statusDiv.classList.add(type);
+        statusDiv.classList.add('show');
+        
+        // Auto-cacher après 5 secondes
+        setTimeout(() => {
+            statusDiv.classList.remove('show');
+            setTimeout(() => {
+                if (statusDiv.classList.length === 0) {
+                    statusDiv.innerHTML = '';
+                }
+            }, 300);
+        }, 5000);
+    }
+
+    // Fonction pour réinitialiser le bouton
+    function resetButton() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+    }
+
+    // Fonction pour afficher le chargement sur le bouton
+    function setLoading(isLoading) {
+        if (isLoading) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Envoi en cours</span><i class="fas fa-spinner fa-pulse"></i>';
+        } else {
+            resetButton();
+        }
+    }
+
+    // Validation des champs
+    function validateForm() {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const subject = document.getElementById("subject").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name) {
+            showStatus("❌ Veuillez entrer votre nom", "error");
+            document.getElementById("name").focus();
+            return false;
+        }
+        if (name.length < 2) {
+            showStatus("❌ Le nom doit contenir au moins 2 caractères", "error");
+            document.getElementById("name").focus();
+            return false;
+        }
+        if (!email) {
+            showStatus("❌ Veuillez entrer votre email", "error");
+            document.getElementById("email").focus();
+            return false;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showStatus("❌ Veuillez entrer un email valide (ex: nom@domaine.com)", "error");
+            document.getElementById("email").focus();
+            return false;
+        }
+        if (!subject) {
+            showStatus("❌ Veuillez entrer un sujet", "error");
+            document.getElementById("subject").focus();
+            return false;
+        }
+        if (subject.length < 2) {
+            showStatus("❌ Le sujet doit contenir au moins 2 caractères", "error");
+            document.getElementById("subject").focus();
+            return false;
+        }
+        if (!message) {
+            showStatus("❌ Veuillez entrer votre message", "error");
+            document.getElementById("message").focus();
+            return false;
+        }
+        if (message.length < 5) {
+            showStatus("❌ Le message doit contenir au moins 5 caractères", "error");
+            document.getElementById("message").focus();
+            return false;
+        }
+        return true;
+    }
+
+    // Soumission du formulaire
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        // Validation
+        if (!validateForm()) {
+            return;
+        }
+
+        // Afficher chargement
+        setLoading(true);
+        showStatus("⏳ Envoi en cours...", "loading");
+
+        // Envoi via EmailJS
+        emailjs.sendForm("service_4epzkes", "template_x0bogrl", this)
+            .then(function(response) {
+                console.log("Succès:", response);
+                showStatus("✅ Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.", "success");
+                form.reset(); // Réinitialiser le formulaire
+                setLoading(false);
+            })
+            .catch(function(error) {
+                console.log("Erreur:", error);
+                showStatus("❌ Une erreur s'est produite. Veuillez réessayer ou me contacter directement par email.", "error");
+                setLoading(false);
+            });
+    });
+
+    // Animation des champs au focus
+    const inputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.01)';
+            this.parentElement.style.transition = 'transform 0.2s ease';
+        });
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'scale(1)';
+        });
+    });
+  </script>
 </body>
 </html>
